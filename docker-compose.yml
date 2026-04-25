@@ -1,0 +1,35 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Sao_Paulo
+      - WEBUI_PORT=8081
+    volumes:
+      - ./config:/config
+      - /mnt/c/Users/pyu/Downloads:/downloads
+      - ./custom-cont-init.d:/custom-cont-init.d:ro
+    ports:
+      - target: 8081
+        published: 8081
+        protocol: tcp
+        mode: host
+      - target: 6881
+        published: 6881
+        protocol: tcp
+        mode: host
+      - target: 6881
+        published: 6881
+        protocol: udp
+        mode: host
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
