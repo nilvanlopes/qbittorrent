@@ -1,6 +1,6 @@
 services:
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest@sha256:304b19cf94bf4fda534e0b086cab9c5f1a9e139a8180c05c0ad7d2ba1526fa99
+    image: lscr.io/linuxserver/qbittorrent:latest@sha256:3d4c4545d51a690a0df15a2ff99038823a88a9822df8e794526447b9afbd7384
     environment:
       - PUID=1000
       - PGID=1000
